@@ -1,0 +1,38 @@
+section {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  padding: 10px ;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1024px;
+}
+
+li {
+  display: list-item block;
+  width: 100%;
+  margin: 20px;
+}
+
+li img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+@media screen and (orientation: landscape) {
+  li {
+    width: 30%;
+    max-width: 360px;
+    margin: 10px;
+  }
+}

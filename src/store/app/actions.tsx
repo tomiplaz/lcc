@@ -34,29 +34,21 @@ export interface IRemoveProductFromCart {
 
 export type AppAction = IFetchProductsStart | IFetchProductsSuccess | IAddProductToCart | IRemoveProductFromCart;
 
-export function fetchProductsStart(): IFetchProductsStart {
-  return {
-    type: FETCH_PRODUCTS_START,
-  };
-};
+export const fetchProductsStart = (): IFetchProductsStart => ({
+  type: FETCH_PRODUCTS_START,
+});
 
-export function fetchProductsSuccess(products: IProduct[]): IFetchProductsSuccess {
-  return {
-    type: FETCH_PRODUCTS_SUCCESS,
-    products,
-  };
-};
+export const fetchProductsSuccess = (products: IProduct[]): IFetchProductsSuccess => ({
+  type: FETCH_PRODUCTS_SUCCESS,
+  products,
+});
 
-export function addProductToCart(cartProduct: ICartProduct): IAddProductToCart {
-  return {
-    type: ADD_PRODUCT_TO_CART,
-    cartProduct,
-  };
-};
+export const addProductToCart = (cartProduct: ICartProduct): IAddProductToCart => ({
+  type: ADD_PRODUCT_TO_CART,
+  cartProduct,
+});
 
-export function removeProductFromCart(id: number): IRemoveProductFromCart {
-  return {
-    type: REMOVE_PRODUCT_FROM_CART,
-    id,
-  };
-}
+export const removeProductFromCart = (id: number): IRemoveProductFromCart => ({
+  type: REMOVE_PRODUCT_FROM_CART,
+  id,
+});

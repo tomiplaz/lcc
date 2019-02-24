@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IProduct } from 'src/types/product';
+import { IProduct } from 'src/types/Product';
 import './Products.css';
 
 export interface IProductsProps {

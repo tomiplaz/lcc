@@ -1,9 +1,16 @@
 import { connect } from 'react-redux';
 import { IStoreState } from 'src/store';
 import Products from 'src/components/Products/Products';
+import { addProductToCart, AppAction } from 'src/store/app/actions';
+import { ICartItem } from 'src/types/Cart';
+import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: IStoreState) => ({
-  items: state.domain.products
+  products: state.domain.products,
 });
 
-export default connect(mapStateToProps, null)(Products);
+const mapDispatchToProps = (dispatch: Dispatch<AppAction>) => ({
+  addToCart: (cartItem: ICartItem) => dispatch(addProductToCart(cartItem)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

@@ -1,22 +1,32 @@
 import * as React from 'react';
 import { IProduct } from 'src/types/Product';
+import { ICartItem } from 'src/types/Cart';
 import './Products.css';
+import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 export interface IProductsProps {
-  items: IProduct[];
+  products: IProduct[];
+  addToCart: (cartItem: ICartItem) => void;
 }
 
-function Products({ items }: IProductsProps) {
+function Products({ products, addToCart }: IProductsProps) {
   return (
     <section>
       <ul>
-        {items.map(item => <li key={item.name}>
-          <img src="item.jpg" alt={item.name} />
-          {item.name}
+        {products.map(product => <li key={product.name}>
+          <img src="product.jpg" alt={product.name} />
+          {product.name}<br/>
+          {product.description}<br/>
+          {product.price}
+          <AddToCartButton
+            cartItem={{ productId: product.id, count: 1 }}
+            onAddToCart={addToCart}
+          />
         </li>)}
       </ul>
     </section>
   );
 }
+
 
 export default Products;

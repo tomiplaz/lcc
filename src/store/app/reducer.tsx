@@ -12,6 +12,7 @@ const initialState: IAppState = {
   isFetchingProducts: false,
   cart: {
     items: [],
+    count: 0,
     value: 0,
   },
 };
@@ -39,6 +40,7 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
         ...state,
         cart: {
           items,
+          count: getCartCount(items),
           value: getCartValue(items),
         }
       };
@@ -63,6 +65,7 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
         ...state,
         cart: {
           items,
+          count: getCartCount(items),
           value: getCartValue(items),
         }
       };
@@ -76,6 +79,12 @@ function getCartItemIndex(items: ICartItem[], productId: number) {
   return items.findIndex(cartItem => cartItem.productId === productId);
 }
 
+// TODO: Fix invalid count
+function getCartCount(items: ICartItem[]) {
+  return items.reduce((sum, cartItem) => sum + cartItem.count, 0);
+}
+
+// TODO: Fix hardcoded value for price
 function getCartValue(items: ICartItem[]) {
   return items.reduce((sum, cartItem) => sum + cartItem.count * 4.2, 0);
 }

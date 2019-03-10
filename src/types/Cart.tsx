@@ -1,5 +1,6 @@
 export interface ICart {
   items: ICartItem[];
+  count: number;
   value: number;
 };
 

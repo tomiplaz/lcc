@@ -1,13 +1,17 @@
 import * as React from 'react';
+import { ICartProduct } from 'src/types/CartProduct';
+import './Cart.css';
 
-class Cart extends React.Component {
-  public render() {
-    return (
-      <>
-        <div>Cart</div>
-      </>
-    );
-  }
+interface ICartProps {
+  cart: ICartProduct[];
+}
+
+function Cart({ cart }: ICartProps) {
+  return (
+    <div className="cart">
+      <h4>Cart ({cart.length})</h4>
+    </div>
+  );
 }
 
 export default Cart;

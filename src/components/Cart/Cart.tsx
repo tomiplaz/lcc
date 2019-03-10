@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { ICartProduct } from 'src/types/CartProduct';
+import { ICart } from 'src/types/Cart';
 import './Cart.css';
 
 interface ICartProps {
-  cart: ICartProduct[];
+  cart: ICart;
 }
 
 function Cart({ cart }: ICartProps) {
   return (
     <div className="cart">
-      <h4>Cart ({cart.length})</h4>
+      <h4>Cart: {cart.items.length}, {cart.value}</h4>
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import { ICartProduct } from 'src/types/CartProduct';
+import { ICart } from 'src/types/Cart';
 
 export interface IAppState {
   isFetchingProducts: boolean;
-  cart: ICartProduct[];
+  cart: ICart;
 };

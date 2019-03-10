@@ -1,5 +1,5 @@
 import { IProduct } from 'src/types/Product';
-import { ICartProduct } from 'src/types/CartProduct';
+import { ICartItem } from 'src/types/Cart';
 
 export const FETCH_PRODUCTS_START = 'FETCH_PRODUCTS_START';
 export type FETCH_PRODUCTS_START = typeof FETCH_PRODUCTS_START;
@@ -24,12 +24,12 @@ export interface IFetchProductsSuccess {
 
 export interface IAddProductToCart {
   type: ADD_PRODUCT_TO_CART;
-  cartProduct: ICartProduct;
+  cartItem: ICartItem;
 };
 
 export interface IRemoveProductFromCart {
   type: REMOVE_PRODUCT_FROM_CART;
-  id: number;
+  productId: number;
 };
 
 export type AppAction = IFetchProductsStart | IFetchProductsSuccess | IAddProductToCart | IRemoveProductFromCart;
@@ -43,12 +43,12 @@ export const fetchProductsSuccess = (products: IProduct[]): IFetchProductsSucces
   products,
 });
 
-export const addProductToCart = (cartProduct: ICartProduct): IAddProductToCart => ({
+export const addProductToCart = (cartItem: ICartItem): IAddProductToCart => ({
   type: ADD_PRODUCT_TO_CART,
-  cartProduct,
+  cartItem,
 });
 
-export const removeProductFromCart = (id: number): IRemoveProductFromCart => ({
+export const removeProductFromCart = (productId: number): IRemoveProductFromCart => ({
   type: REMOVE_PRODUCT_FROM_CART,
-  id,
+  productId,
 });

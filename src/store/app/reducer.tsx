@@ -20,7 +20,7 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
     case FETCH_PRODUCTS_SUCCESS:
       return { ...state, isFetchingProducts: false };
     case ADD_PRODUCT_TO_CART: {
-      let cart = [ ...state.cart ];
+      const cart = [ ...state.cart ];
       const cartProductIndex = getCartProductIndex(cart, action.cartProduct.id);
 
       if (cartProductIndex !== -1) {
@@ -35,7 +35,7 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
       return { ...state, cart };
     }
     case REMOVE_PRODUCT_FROM_CART: {
-      let cart = [ ...state.cart ];
+      const cart = [ ...state.cart ];
       const cartProductIndex = getCartProductIndex(cart, action.id);
 
       if (cartProductIndex !== -1) {

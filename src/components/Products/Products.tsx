@@ -19,7 +19,7 @@ function Products({ products, addToCart }: IProductsProps) {
           {product.description}<br/>
           {product.price}
           <AddToCartButton
-            cartItem={{ productId: product.id, count: 1 }}
+            product={product}
             onAddToCart={addToCart}
           />
         </li>)}

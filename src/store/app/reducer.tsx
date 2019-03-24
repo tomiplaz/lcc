@@ -79,12 +79,10 @@ function getCartItemIndex(items: ICartItem[], productId: number) {
   return items.findIndex(cartItem => cartItem.productId === productId);
 }
 
-// TODO: Fix invalid count
 function getCartCount(items: ICartItem[]) {
   return items.reduce((sum, cartItem) => sum + cartItem.count, 0);
 }
 
-// TODO: Fix hardcoded value for price
 function getCartValue(items: ICartItem[]) {
   return items.reduce((sum, cartItem) => sum + cartItem.count * 4.2, 0);
 }

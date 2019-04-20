@@ -9,7 +9,7 @@ interface ICartProps {
 function Cart({ cart }: ICartProps) {
   return (
     <div className="cart">
-      <h4>Cart: {cart.count}, {cart.value}</h4>
+      <h4>Cart: {cart.count}, {cart.value.toFixed(2)}</h4>
     </div>
   );
 }

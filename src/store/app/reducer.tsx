@@ -5,6 +5,7 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   ADD_PRODUCT_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
+  REDUCE_CART
 } from './actions';
 import { ICartItem } from 'src/types/Cart';
 
@@ -38,11 +39,7 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
 
       return {
         ...state,
-        cart: {
-          items,
-          count: getCartCount(items),
-          value: getCartValue(items),
-        }
+        cart: { ...state.cart, items }
       };
     }
     case REMOVE_PRODUCT_FROM_CART: {
@@ -63,12 +60,21 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
 
       return {
         ...state,
-        cart: {
-          items,
-          count: getCartCount(items),
-          value: getCartValue(items),
-        }
+        cart: { ...state.cart, items }
       };
+    }
+    case REDUCE_CART: {
+      const cart = {
+        ...state.cart,
+        count: state.cart.items.reduce((sum, cartItem) => sum + cartItem.count, 0),
+        value: state.cart.items.reduce((sum, cartItem) => {
+          const cartItemProduct = action.products.find(product => product.id === cartItem.productId)
+
+          return sum + (cartItemProduct ? cartItemProduct.price * cartItem.count : 0)
+        }, 0)
+      }
+
+      return { ...state, cart }
     }
     default:
       return { ...state };
@@ -77,12 +83,4 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
 
 function getCartItemIndex(items: ICartItem[], productId: number) {
   return items.findIndex(cartItem => cartItem.productId === productId);
-}
-
-function getCartCount(items: ICartItem[]) {
-  return items.reduce((sum, cartItem) => sum + cartItem.count, 0);
-}
-
-function getCartValue(items: ICartItem[]) {
-  return items.reduce((sum, cartItem) => sum + cartItem.count * 4.2, 0);
 }

@@ -1,5 +1,6 @@
 import { IDomainState } from './domain';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { IAppState } from './app';
 import { domainReducer } from './domain/reducer';
 import { appReducer } from './app/reducer';
@@ -18,4 +19,7 @@ const reducer = combineReducers({
   app: appReducer,
 });
 
-export const store = createStore<IStoreState, StoreAction, {}, {}>(reducer);
+export const store = createStore<IStoreState, StoreAction, {}, {}>(
+  reducer,
+  applyMiddleware(thunk)
+);

@@ -18,7 +18,7 @@ function Products({ products, addToCart }: IProductsProps) {
         res.json().then(json => setDbProducts(json))
       })
       .catch(err => console.log('Error fetching products:', err))
-  })
+  }, [])
 
   return (
     <section>

@@ -10,10 +10,20 @@ export interface IProductsProps {
 }
 
 function Products({ products, addToCart }: IProductsProps) {
+  const [dbProducts, setDbProducts]: any = React.useState([])
+
+  React.useEffect(() => {
+    fetch('http://localhost:3000/products')
+      .then(res => {
+        res.json().then(json => setDbProducts(json))
+      })
+      .catch(err => console.log('Error fetching products:', err))
+  })
+
   return (
     <section>
       <ul>
-        {products.map(product => <li key={product.name}>
+        {dbProducts.map((product: IProduct) => <li key={product.name}>
           <img src="product.jpg" alt={product.name} />
           {product.name}<br/>
           {product.description}<br/>

@@ -3,6 +3,7 @@ import {
   AppAction,
   FETCH_PRODUCTS_START,
   FETCH_PRODUCTS_SUCCESS,
+  FETCH_PRODUCTS_FAILURE,
   ADD_PRODUCT_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
   REDUCE_CART
@@ -23,6 +24,7 @@ export function appReducer(state: IAppState = initialState, action: AppAction): 
     case FETCH_PRODUCTS_START:
       return { ...state, isFetchingProducts: true };
     case FETCH_PRODUCTS_SUCCESS:
+    case FETCH_PRODUCTS_FAILURE:
       return { ...state, isFetchingProducts: false };
     case ADD_PRODUCT_TO_CART: {
       const items = [ ...state.cart.items ];

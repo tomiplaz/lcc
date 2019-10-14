@@ -9,6 +9,9 @@ export type FETCH_PRODUCTS_START = typeof FETCH_PRODUCTS_START;
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export type FETCH_PRODUCTS_SUCCESS = typeof FETCH_PRODUCTS_SUCCESS;
 
+export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
+export type FETCH_PRODUCTS_FAILURE = typeof FETCH_PRODUCTS_FAILURE;
+
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 export type ADD_PRODUCT_TO_CART = typeof ADD_PRODUCT_TO_CART;
 
@@ -27,6 +30,10 @@ export interface IFetchProductsSuccess {
   products: IProduct[];
 };
 
+export interface IFetchProductsFailure {
+  type: FETCH_PRODUCTS_FAILURE;
+};
+
 export interface IAddProductToCart {
   type: ADD_PRODUCT_TO_CART;
   cartItem: ICartItem;
@@ -42,7 +49,13 @@ export interface IReduceCart {
   products: IProduct[];
 }
 
-export type AppAction = IFetchProductsStart | IFetchProductsSuccess | IAddProductToCart | IRemoveProductFromCart | IReduceCart;
+export type AppAction =
+  IFetchProductsStart |
+  IFetchProductsSuccess |
+  IFetchProductsFailure |
+  IAddProductToCart |
+  IRemoveProductFromCart |
+  IReduceCart;
 
 export const fetchProductsStart = (): IFetchProductsStart => ({
   type: FETCH_PRODUCTS_START,
@@ -51,6 +64,10 @@ export const fetchProductsStart = (): IFetchProductsStart => ({
 export const fetchProductsSuccess = (products: IProduct[]): IFetchProductsSuccess => ({
   type: FETCH_PRODUCTS_SUCCESS,
   products,
+});
+
+export const fetchProductsFailure = (): IFetchProductsFailure => ({
+  type: FETCH_PRODUCTS_FAILURE,
 });
 
 export const addProductToCart = (cartItem: ICartItem): IAddProductToCart => ({

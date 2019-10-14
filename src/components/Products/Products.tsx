@@ -9,34 +9,25 @@ export interface IProductsProps {
   addToCart: (cartItem: ICartItem) => void;
 }
 
+export default Products;
+
 function Products({ products, addToCart }: IProductsProps) {
-  const [dbProducts, setDbProducts]: any = React.useState([])
-
-  React.useEffect(() => {
-    fetch('http://localhost:3000/products')
-      .then(res => {
-        res.json().then(json => setDbProducts(json))
-      })
-      .catch(err => console.log('Error fetching products:', err))
-  }, [])
-
   return (
     <section>
       <ul>
-        {dbProducts.map((product: IProduct) => <li key={product.name}>
-          <img src="product.jpg" alt={product.name} />
-          {product.name}<br/>
-          {product.description}<br/>
-          {product.price}
-          <AddToCartButton
-            product={product}
-            onAddToCart={addToCart}
-          />
-        </li>)}
+        {products.map(product => (
+          <li key={product.name}>
+            <img src="product.jpg" alt={product.name} />
+            {product.name}<br/>
+            {product.description}<br/>
+            {product.price}
+            <AddToCartButton
+              product={product}
+              onAddToCart={addToCart}
+            />
+          </li>
+        ))}
       </ul>
     </section>
   );
 }
-
-
-export default Products;

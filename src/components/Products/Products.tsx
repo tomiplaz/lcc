@@ -16,7 +16,7 @@ function Products({ products, addToCart }: IProductsProps) {
     <section>
       <ul>
         {products.map(product => (
-          <li key={product.name}>
+          <li key={product.id}>
             <img src="product.jpg" alt={product.name} />
             {product.name}<br/>
             {product.description}<br/>

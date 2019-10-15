@@ -2,12 +2,14 @@ import * as React from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import CheckoutForm from './components/CheckoutForm/CheckoutForm'
 import Products from './containers/Products';
 import Cart from './containers/Cart';
 import { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure, AppAction } from './store/app/actions';
 import { IProduct } from './types/Product';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { StripeProvider, Elements } from 'react-stripe-elements'
 
 export interface IAppProps {
   dispatchFetchProductsStart: () => void;
@@ -31,12 +33,15 @@ function App ({ dispatchFetchProductsStart, dispatchFetchProductsSuccess, dispat
   }, [])
 
   return (
-    <>
+    <StripeProvider apiKey='pk_test_zlc978gU7kY7LRvqBI9RqnsF'>
       <Header />
       <Cart />
+      <Elements>
+        <CheckoutForm />
+      </Elements>
       <Products />
       <Footer />
-    </>
+    </StripeProvider>
   );
 }
 

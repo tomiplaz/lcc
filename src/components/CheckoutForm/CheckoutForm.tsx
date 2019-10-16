@@ -16,15 +16,20 @@ function CheckoutForm ({ stripe }: ICheckoutFormProps) {
   )
 
   async function submit () {
-    const { token } = await stripe.createToken({ name: 'Name' })
-    const response = await fetch('/charge', {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: token.id
-    })
+    if (stripe) {
+      const { token } = await stripe.createToken({ name: 'Name' })
 
-    if (response.ok) {
-      console.log('Purchase successful!')
+      if (token) {
+        const response = await fetch('/charge', {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: token.id
+        })
+
+        if (response.ok) {
+          console.log('Purchase successful!')
+        }
+      }
     }
   }
 }

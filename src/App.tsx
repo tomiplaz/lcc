@@ -33,15 +33,17 @@ function App ({ dispatchFetchProductsStart, dispatchFetchProductsSuccess, dispat
   }, [])
 
   return (
-    <StripeProvider apiKey='pk_test_zlc978gU7kY7LRvqBI9RqnsF'>
+    <>
       <Header />
       <Cart />
-      <Elements>
-        <CheckoutForm />
-      </Elements>
+      <StripeProvider apiKey='pk_test_zlc978gU7kY7LRvqBI9RqnsF'>
+        <Elements>
+          <CheckoutForm />
+        </Elements>
+      </StripeProvider>
       <Products />
       <Footer />
-    </StripeProvider>
+    </>
   );
 }
 

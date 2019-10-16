@@ -18,7 +18,8 @@ ul {
 }
 
 li {
-  display: list-item block;
+  display: flex;
+  flex-flow: column nowrap;
   width: 100%;
   margin: 20px;
 }
@@ -27,6 +28,11 @@ li img {
   width: 100%;
   height: auto;
   margin-bottom: 10px;
+}
+
+li button {
+  max-width: 150px;
+  margin: 0.5rem auto 0;
 }
 
 @media screen and (orientation: landscape) {

@@ -7,6 +7,14 @@ export interface ICheckoutFormProps {
 }
 
 function CheckoutForm ({ stripe }: ICheckoutFormProps) {
+  const [isCompleted, setIsCompleted] = React.useState<boolean>(false)
+
+  if (isCompleted) {
+    return (
+      <h1>Purchase completed!</h1>
+    )
+  }
+
   return (
     <div className='checkout-form'>
       <p>Would you like to complete the purchase?</p>
@@ -27,7 +35,7 @@ function CheckoutForm ({ stripe }: ICheckoutFormProps) {
         })
 
         if (response.ok) {
-          console.log('Purchase successful!')
+          setIsCompleted(true)
         }
       }
     }

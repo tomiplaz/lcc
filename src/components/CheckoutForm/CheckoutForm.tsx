@@ -7,24 +7,25 @@ export interface ICheckoutFormProps {
 }
 
 function CheckoutForm ({ stripe }: ICheckoutFormProps) {
+  const [isProcessing, setIsProcessing] = React.useState<boolean>(false)
   const [isCompleted, setIsCompleted] = React.useState<boolean>(false)
-
-  if (isCompleted) {
-    return (
-      <h1>Purchase completed!</h1>
-    )
-  }
 
   return (
     <div className='checkout-form'>
       <p>Would you like to complete the purchase?</p>
       <CardElement />
       <button onClick={submit}>Purchase</button>
+      <h2>
+        {isProcessing && 'Processing...'}
+        {isCompleted && 'Purchase completed!'}
+      </h2>
     </div>
   )
 
   async function submit () {
     if (stripe) {
+      setIsProcessing(true)
+
       try {
         const { token } = await stripe.createToken({ name: 'Name' })
 
@@ -35,6 +36,8 @@ function CheckoutForm ({ stripe }: ICheckoutFormProps) {
             body: token.id
           })
 
+          setIsProcessing(false)
+
           if (response.ok) {
             setIsCompleted(true)
           } else {
@@ -43,6 +46,7 @@ function CheckoutForm ({ stripe }: ICheckoutFormProps) {
         }
       } catch (err) {
         console.log(err)
+        setIsProcessing(false)
       }
     }
   }

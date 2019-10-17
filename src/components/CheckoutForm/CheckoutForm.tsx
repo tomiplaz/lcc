@@ -25,18 +25,24 @@ function CheckoutForm ({ stripe }: ICheckoutFormProps) {
 
   async function submit () {
     if (stripe) {
-      const { token } = await stripe.createToken({ name: 'Name' })
+      try {
+        const { token } = await stripe.createToken({ name: 'Name' })
 
-      if (token) {
-        const response = await fetch('/charge', {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: token.id
-        })
+        if (token) {
+          const response = await fetch('http://localhost:3000/charge', {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: token.id
+          })
 
-        if (response.ok) {
-          setIsCompleted(true)
+          if (response.ok) {
+            setIsCompleted(true)
+          } else {
+            console.log('Error posting token to create a charge:', response)
+          }
         }
+      } catch (err) {
+        console.log(err)
       }
     }
   }

@@ -10,6 +10,7 @@ import { IProduct } from './types/Product';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { StripeProvider, Elements } from 'react-stripe-elements'
+import ProductsContext from './contexts/ProductsContext'
 
 export interface IAppProps {
   dispatchFetchProductsStart: () => void;
@@ -18,12 +19,15 @@ export interface IAppProps {
 }
 
 function App ({ dispatchFetchProductsStart, dispatchFetchProductsSuccess, dispatchFetchProductsFailure }: IAppProps) {
+  const [ products, setProducts ] = React.useState<IProduct[]>([])
+
   React.useEffect(() => {
     dispatchFetchProductsStart();
     fetch('http://localhost:3000/products')
       .then(res => {
-        res.json().then((products: IProduct[]) => {
-          dispatchFetchProductsSuccess(products)
+        res.json().then((fetchedProducts: IProduct[]) => {
+          dispatchFetchProductsSuccess(fetchedProducts)
+          setProducts(fetchedProducts)
         })
       })
       .catch(err => {
@@ -33,7 +37,7 @@ function App ({ dispatchFetchProductsStart, dispatchFetchProductsSuccess, dispat
   }, [])
 
   return (
-    <>
+    <ProductsContext.Provider value={products}>
       <Header />
       <Cart />
       <StripeProvider apiKey='pk_test_zlc978gU7kY7LRvqBI9RqnsF'>
@@ -43,7 +47,7 @@ function App ({ dispatchFetchProductsStart, dispatchFetchProductsSuccess, dispat
       </StripeProvider>
       <Products />
       <Footer />
-    </>
+    </ProductsContext.Provider>
   );
 }
 

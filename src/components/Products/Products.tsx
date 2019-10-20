@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { IProduct } from 'src/types/Product';
 import { ICartItem } from 'src/types/Cart';
 import './Products.css';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
+import ProductsContext from '../../contexts/ProductsContext'
 
 export interface IProductsProps {
-  products: IProduct[];
   addToCart: (cartItem: ICartItem) => void;
 }
 
 export default Products;
 
-function Products({ products, addToCart }: IProductsProps) {
+function Products({ addToCart }: IProductsProps) {
+  const products = React.useContext(ProductsContext)
+
   return (
     <section>
       <ul>

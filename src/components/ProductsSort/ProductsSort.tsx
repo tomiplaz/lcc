@@ -16,9 +16,9 @@ export default ProductsSort
 
 function ProductsSort({ onSortChange }: IProductsSortProps) {
   return (
-    <select name='products-sort' onChange={onSortChange}>
+    <select name='products-sort' onChange={onSortChange} defaultValue={DEFAULT_SORT_VALUE}>
       {Object.keys(ProductsSortEnum).map((key: string) => (
-        <option value={ProductsSortEnum[key]} selected={ProductsSortEnum[key] === DEFAULT_SORT_VALUE} key={key}>
+        <option value={ProductsSortEnum[key]} key={key}>
           {key}
         </option>
       ))}

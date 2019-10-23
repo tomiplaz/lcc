@@ -1,11 +1,10 @@
 ul.products-list {
-  padding: 10px ;
+  padding: 10px;
   list-style: none;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-  max-width: 1024px;
 }
 
 ul.products-list li {

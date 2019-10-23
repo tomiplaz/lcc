@@ -1,0 +1,35 @@
+ul.products-list {
+  padding: 10px ;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1024px;
+}
+
+ul.products-list li {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  margin: 20px;
+}
+
+ul.products-list li img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+ul.products-list li button {
+  max-width: 150px;
+  margin: 0.5rem auto 0;
+}
+
+@media screen and (orientation: landscape) {
+  ul.products-list li {
+    width: 30%;
+    max-width: 360px;
+    margin: 10px;
+  }
+}

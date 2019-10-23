@@ -1,6 +1,7 @@
 import * as React from 'react'
 import ProductsSort, { IProductsSortProps } from '../ProductsSort/ProductsSort'
 import ProductsOrder, { IProductsOrderProps } from '../ProductsOrder/ProductsOrder'
+import './ProductsControls.css'
 
 export interface IProductsControlsProps extends IProductsSortProps, IProductsOrderProps {}
 

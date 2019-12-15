@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { IProduct } from 'src/types/Product'
 import './ProductsList.css';
+import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 export interface IProductsListProps {
   products: IProduct[];
@@ -17,6 +18,7 @@ function ProductsList({ products }: IProductsListProps) {
           {product.name}<br/>
           {product.description}<br/>
           {product.price}
+          <AddToCartButton productId={product.id} />
         </li>
       ))}
     </ul>

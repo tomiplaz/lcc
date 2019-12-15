@@ -1,18 +1,19 @@
-import * as React from 'react';
-
-interface IAddToCartButtonProps {
-  productId: number;
-}
+import * as React from 'react'
+import { ICartItem } from 'src/types/Cart'
 
 export default AddToCartButton
 
-function AddToCartButton ({ productId }: IAddToCartButtonProps) {
+interface IAddToCartButtonProps {
+  productId: number;
+  addToCart: (cartItem: ICartItem) => void;
+}
+
+function AddToCartButton ({ productId, addToCart }: IAddToCartButtonProps) {
   return (
     <button onClick={onClick}>Add To Cart</button>
   )
 
   function onClick () {
-    console.log(productId)
-    // TODO: Add to Cart Context
+    addToCart({ productId, count: 1})
   }
 }

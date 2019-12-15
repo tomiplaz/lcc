@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ICartItem } from 'src/types/Cart';
 import './Products.css';
 import ProductsContext from '../../contexts/ProductsContext'
 import ProductsList from '../ProductsList/ProductsList';
@@ -8,13 +7,9 @@ import { DEFAULT_ORDER_VALUE, ProductsOrderEnum } from '../ProductsOrder/Product
 import ProductsControls from '../ProductsControls/ProductsControls';
 import { IProduct } from 'src/types/Product';
 
-export interface IProductsProps {
-  addToCart: (cartItem: ICartItem) => void;
-}
-
 export default Products;
 
-function Products({ addToCart }: IProductsProps) {
+function Products() {
   const [sort, setSort] = React.useState<ProductsSortEnum>(DEFAULT_SORT_VALUE)
   const [order, setOrder] = React.useState<ProductsOrderEnum>(DEFAULT_ORDER_VALUE)
   const products = React.useContext(ProductsContext)

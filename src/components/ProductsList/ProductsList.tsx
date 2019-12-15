@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { IProduct } from 'src/types/Product'
 import './ProductsList.css';
-import AddToCartButton from '../AddToCartButton/AddToCartButton';
+import AddToCartButton from 'src/containers/AddToCartButton';
 
 export interface IProductsListProps {
   products: IProduct[];
